@@ -38,30 +38,8 @@ app.get("/api/fortune", (req, res) => {
 
 
 //const goals = require('./db.json')
-let globalId = 1
 
-module.exports = {
-    getGoals: (req, res) => res.status(200).send(goals),
-    deleteGoal: (req, res) => {
-        let index = goals.findIndex(elem => elem.id === +req.params.id)
-        goals.splice(index, 1)
-        res.status(200).send(goals)
-    },
-    createGoal: (req, res) => {
-        let newGoal = {
-            id: globalId,
-            goal
-        }
-        goals.push(newGoal)
-        res.status(200).send(goals)
-        globalId++
-    },
-    updateGoal: (req, res) => {
-        let {id} = req.params
-        let {type} = req.body
-        let index = goals.findIndex(elem => elem.id === +id)
-}
-}
+
 
 //Endpoints
 const {
@@ -72,7 +50,7 @@ const {
 } = require("./controller");
 
 app.get("/api/goals", getGoals);
-app.delete("/api/goals/:id", deleteGoal);
+app.delete("/api/goals", deleteGoal);
 app.post("/api/goals", createGoal);
 app.put("/api/goals/:id", updateGoal);
 
